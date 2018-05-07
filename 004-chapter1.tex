@@ -26,12 +26,14 @@
   \begin{figure}[H]%
     \center%
     \includegraphics[width=0.3\textwidth]{test.png}%
+     % you need to add the caption for the list of figures
     \caption[This is a test image]{Test Image}\label{fig:test}%
   \end{figure}
   
    \begin{figure}[H]%
     \center%
     \includegraphics[width=0.3\textwidth]{garbage.png}%
+    % you need to add the caption for the list of figures
     \caption[This is a test image]{garbage Image}\label{fig:test}%
   \end{figure}
 
@@ -118,12 +120,44 @@ this will be auto numbered by latex according to division and subdiv
 L' = {L}{\sqrt{1-\frac{v^2}{c^2}}}
 \end{equation}
 
+\begin{equation}
+\lim \limits_{x \to 5} \frac{x+1}{x+2}  = f(x)
+\end{equation}
+
+size Large
+\begin{equation}
+\Large \lim \limits_{x \to 5} \frac{x+1}{x+2}  = f(x)
+\end{equation}
+
+size large
+\begin{equation}
+\large \lim \limits_{x \to 5} \frac{x+1}{x+2}  = f(x)
+\end{equation}
+
+\begin{equation}
+\displaystyle{\int s \, ds}
+\end{equation}
+
+\begin{equation}
+\Large \vec{x}
+\end{equation}
+
+\begin{equation}
+\displaystyle {\sum \limits_{x = 5} ^{\infty} x}
+\end{equation}
+
+\begin{equation} \label{eq:1}
+\sum_{i=0}^{\infty} a_i x^i
+\end{equation}
+ 
+Reference Example :The equation \ref{eq:1} is a typical power series.
+
 look at commands file you can make your own commands when you are repeating equation for example or any repeated process 
 this equation comes from predefined command
 \komyCommand
 
 table example\\
-\begin{center}
+\begin{table}[H] \centering % put the [H] command to place the table as is (don't let it float) 
 
 \begin{tabular}{ |p{3cm}||p{3cm}|p{3cm}|p{3cm}|  }
  \hline
@@ -140,8 +174,14 @@ table example\\
  Andorra& AD  & AND   &020\\
  Angola& AO  & AGO&024\\
  \hline
+ 
 \end{tabular}
 
-\end{center}
+ % you need to add the caption for the list of tables
+\caption{Table to test captions and labels}
+\label{table:1}
+
+\end{table}
+
 And for more chaptes, just copy the file ``004-chapter1.tex'' and edit the content, and then you'll have to add it to ``001-report.tex''.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

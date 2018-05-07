@@ -117,7 +117,7 @@
     } %\centering
 
 % chapter tiltes spacing
-\titlespacing*{\chapter}{0pt}{50pt}{80pt}
+\titlespacing*{\chapter}{0pt}{20pt}{40pt}
 
 \titleformat{\section}[block]%
   {\Large\bfseries}{\thesection}%

@@ -5,6 +5,10 @@
 
 \documentclass[12pt, oneside, a4paper]{tanta-mrs-doc}
 
+% paragraph indentation
+\setlength{\parindent}{0em} % stop any indentation
+%\setlength{\parskip}{1em}
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Define code variables
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -75,9 +79,9 @@
     \addcontentsline{toc}{chapter}{\listfigurename}
     \cleardoublepage%
 
-    % \listoftables
-    % \addcontentsline{toc}{chapter}{\listtablename}
-    % \cleardoublepage
+    \listoftables
+    \addcontentsline{toc}{chapter}{\listtablename}
+    \cleardoublepage
 
     %\printglossary[type=\acronymtype, title=Abbreviations]
     \printacronyms[heading=chapter*, name=Acronyms]
