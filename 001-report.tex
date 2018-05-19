@@ -39,8 +39,61 @@
 \usepackage{wrapfig}
 \usepackage[all]{nowidow}
 
+\usepackage{listings,chngcntr}
+\lstset{frame=Trbl,numbers=left}
+\usepackage{amsmath}
+
 \usepackage[sorting=none, backend=bibtex]{biblatex}
+\usepackage[utf8]{inputenc}
+
+\usepackage{hyperref}
+\usepackage{glossaries-extra}
+
 \addbibresource{001-report}
+
+% numbering by chapter
+\counterwithin{figure}{chapter}
+\counterwithin{table}{chapter}
+%\counterwithin{lstlisting}{chapter}
+% the default behaviour for code listings
+
+
+%New colors defined below
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+\definecolor{backcolour}{rgb}{0.95,0.95,0.92}
+
+%Code listing style named "mystyle"
+\lstdefinestyle{mystyle}{
+  backgroundcolor=\color{backcolour},   commentstyle=\color{codegreen},
+  keywordstyle=\color{magenta},
+  numberstyle=\tiny\color{codegray},
+  stringstyle=\color{codepurple},
+  basicstyle=\footnotesize,
+  breakatwhitespace=false,         
+  breaklines=true,                 
+  captionpos=b,                    
+  keepspaces=true,                 
+  numbers=left,                    
+  numbersep=5pt,                  
+  showspaces=false,                
+  showstringspaces=false,
+  showtabs=false,                  
+  tabsize=2
+}
+
+%"mystyle" code listing set
+\lstset{style=mystyle}
+\renewcommand\lstlistingname{Code Listings} % title
+\renewcommand\lstlistlistingname{Code Listings} % name
+
+% list of figures spacing removal
+\newcommand*{\noaddvspace}{\renewcommand*{\addvspace}[1]{}}
+\addtocontents{lof}{\protect\noaddvspace}
+
+% list of tables spacing removal
+\addtocontents{lot}{\protect\noaddvspace}
 
 %% TODO: Remove this function when done %%
 \newcommand\todoin[2][]{\todo[inline, caption={2do}, #1]{
@@ -71,23 +124,35 @@
     \include{003-thanks}
     \cleardoublepage%
 
-    \tableofcontents
+
+   \tableofcontents
     \addcontentsline{toc}{chapter}{\contentsname}
     \cleardoublepage%
+    
 
     \listoffigures
+
     \addcontentsline{toc}{chapter}{\listfigurename}
     \cleardoublepage%
+    
 
     \listoftables
+   
     \addcontentsline{toc}{chapter}{\listtablename}
     \cleardoublepage
 
+    { \setstretch{1.25}  % list of tables spacing removal
+     \lstlistoflistings
+    }
+   
+    \cleardoublepage
     %\printglossary[type=\acronymtype, title=Abbreviations]
+   
+    % Acronyms                  
+    \markboth{\MakeUppercase{Acronyms}}{}%
     \printacronyms[heading=chapter*, name=Acronyms]
-    \addcontentsline{toc}{chapter}{Acronyms}
-    \cleardoublepage%
-
+    
+     
     \sloppy
 
     \pagenumbering{arabic}% 1 2 3 4 5
@@ -102,8 +167,8 @@
     \include{004-chapter1}
     \cleardoublepage%
 
-    % \include{004-chapter2}
-    % \cleardoublepage%
+    \include{004-chapter2}
+    \cleardoublepage%
 
     % \include{004-chapter3}
     % \cleardoublepage%
