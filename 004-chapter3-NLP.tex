@@ -1,14 +1,14 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % CHAPTER                  %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\chapter{Chapter Three}%
-\label{chap:Chapter_Three}
+\chapter{Natural Language Processing}%
+\label{chap:chap3}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % SECTION                  %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Word Representation}
-\label{chap:Word Representation}
+\label{section:chap3:sec1}
 
   %%%%%%%%%%%%%%%%%%%%%%%%%%%%
   % SUBSECTION               %
@@ -19,7 +19,7 @@ Image and audio processing systems work with rich, high-dimensional datasets enc
   
  \begin{figure}[H]%
     \center%
-    \includegraphics[width=1\textwidth]{images/audio-image-text.png}%
+    \includegraphics[width=1\textwidth]{amira/audio-image-text.png}%
      % you need to add the caption for the list of figures
     \caption[This is audio-image-text image]{audio-image-text image}\label{fig:audio-image-text}%
  \end{figure}
@@ -52,7 +52,7 @@ This inversion might seem like an arbitrary choice, but statistically it has the
 
  \begin{figure}[H]%
      \center%
-     \includegraphics[width=0.8\textwidth]{images/cbow+skip.PNG}%
+     \includegraphics[width=0.8\textwidth]{amira/cbow+skip.PNG}%
       % you need to add the caption for the list of figures
      \caption[cbow and skip Models]{New model architectures. The CBOW architecture predicts the current word based on the context, and the Skip-gram predicts surrounding words given the current word.}\label{fig:cbow}%
  \end{figure}
@@ -105,7 +105,7 @@ where \text score({$w_t$}, $h$) computes the compatibility of word ${w_t}$ with 
  This yields a properly normalized probabilistic model for language modeling. However this is very expensive, because we need to compute and normalize each probability using the score for all other $V$  words $w'$ in the current context $h$ , at every training step.
 \begin{figure}[H]%
     \center%
-    \includegraphics[width=0.8\textwidth]{images/softmax-nplm.png}%
+    \includegraphics[width=0.8\textwidth]{amira/softmax-nplm.png}%
     % you need to add the caption for the list of figures
     \caption[softmax]{softmax-nplm}\label{fig:softmax}%
   \end{figure}
@@ -129,7 +129,7 @@ We will actually make use of the very similar Noise-Contrastive Estimation (NCE)
 
 \begin{figure}[H]%
     \center%
-    \includegraphics[width=0.8\textwidth]{images/nce-nplm.png}%
+    \includegraphics[width=0.8\textwidth]{amira/nce-nplm.png}%
     % you need to add the caption for the list of figures
     \caption[nce]{nce-nplm}\label{fig:nce-nplm}%
 \end{figure}
@@ -143,7 +143,7 @@ samples and the numerical probabilities of the noise distribution, while Negativ
  
   \begin{figure}[H]%
       \center%
-        \includegraphics[width=1\textwidth]{images/linear-relationships.png}%
+        \includegraphics[width=1\textwidth]{amira/linear-relationships.png}%
         % you need to add the caption for the list of figures
         \caption[linear]{linear relationships}\label{fig:nce-nplm}%
   \end{figure}
@@ -172,7 +172,7 @@ It is easy to be amazed by their seemingly magical power of word2vec. But in rea
      \item \textcite{Eigenword}\\
      is an real-valued vector "embedding" associated with a word that captures its meaning in the sense that distributionally similar words have similar eigenwords.
      
-     \item  \textcite{Dependency-Based Word Embeddings}\\
+     \item \textcite{Dependency-Based Word Embeddings}\\
       by learning dependency-based contexts, it became strong against syntactic similarity. it might be good if you want to use it for syntactic similarity.
       
       \item \textcite{ Meta-embedding}\\
