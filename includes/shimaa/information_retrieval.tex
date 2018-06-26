@@ -1,0 +1,97 @@
+\section{information retrieval}  
+
+\subsection{introduction}
+
+
+The meaning of the term information retrieval can be very broad. Just getting a credit card out of your wallet so that you can type in the card number is a form of information retrieval. However, as an academic field of study information retrieval might be defined thus: 
+
+Information retrieval (IR) is finding material (usually documents) of an unstructured nature (usually text) that satisfies an information need from within large collections (usually stored on computers). As defined in this way, information retrieval used to be an activity that only a few people engaged in: reference librarians, paralegals, and similar professional searchers.
+
+ Now the world has changed, and hundreds of millions of people engage in information retrieval every day when they use a web search engine or search their email.1 Information retrieval is fast becoming the dominant form of information access, overtaking traditional database style searching (the sort that is going on when a clerk says to you:( “I’m sorry, I can only look up your order if you can give me your Order ID”).
+ 
+IR can also cover other kinds of data and information problems beyond that specified in the core definition above. The term “unstructured data” refers to data which does not have clear, semantically overt, easy-for-a-computer structure. It is the opposite of structured data, the canonical example of which is a relational database, of the sort companies usually use to maintain product inventories and personnel records. In reality, almost no data are truly “unstructured”. This is definitely true of all text data if you count the latent linguistic structure of human languages. But even accepting that the intended notion of structure is overt structure, most text has structure, such as headings and paragraphs and footnotes, which is commonly represented in documents by explicit markup (such as the coding underlying web pages).
+
+Information retrieval systems can also be distinguished by the scale at
+which they operate, and it is useful to distinguish three prominent scales.
+In web search, the system has to provide search over billions of documents
+stored on millions of computers. Distinctive issues are needing to gather
+documents for indexing, being able to build systems that work efficiently
+at this enormous scale.
+
+
+
+
+\subsection{Boolean retrieval model}
+
+ there are three simple retrieval methods. The first two methods produce ranked results, ordering the documents in the collection according to their expected relevance to the query. Our third retrieval method allows Boolean filters to be applied to the collection, identifying those documents that match a predicate.
+ 
+Boolean filters applied by Web search engines, explicit support for Boolean queries is important in specific application areas such as digital libraries and the legal domain. In contrast to ranked retrieval, Boolean retrieval returns sets of documents rather than ranked lists.
+
+Under the Boolean retrieval model, a term t is considered to specify the set of documents containing it,where The result of a Boolean query is a set of documents matching the predicate,and The standard Boolean operators (AND, OR, and NOT)are used to construct Boolean queries.
+
+You may wonder why we represent these queries as vectors rather than sets. Representation as a vector is useful when terms are repeated in a query and when the ordering of terms is significant. In ranking formulae, we use the notation qt to indicate the number of times term t appears in the query.
+
+There is a key difference in the conventional interpretations of term vectors for ranked retrieval and predicates for Boolean retrieval. Boolean predicates are usually interpreted as strict filters ,if a document does not match the predicate, it is not returned in the result set. Term vectors, on the other hand, are often interpreted as summarizing an information need. Not all the terms in the vector need to appear in a document for it to be returned. 
+
+\subsection{AD Hoc retrieval}
+
+we assume an average of 6 bytes perword including spaces and punctuation,
+then this is a document collection about 6 GB in size. Typically, there might
+be about M = 500,000 distinct terms in these documents. There is nothing
+special about the numbers we have chosen, and they might vary by an order
+of magnitude or more, but they give us some idea of the dimensions of the
+kinds of problems we need to handle. 
+
+because the number of possible queries is huge ; Our goal is to develop a system to address the ad hoc retrieval task. This is the most standard IR task. In it, a system aims to provide documents from within the collection that are relevant to an arbitrary user information need, communicated to the system by means of a one-off, user-initiated query.
+
+
+\subsection{inverted index}
+
+ an INVERTED INDEX is index always maps back from terms to the parts of a document where they occur. Nevertheless, inverted index, or sometimes inverted file, has become the standard termin information retrieval.
+ 
+\subsubsection{A first take at building an inverted index}
+
+\begin{figure}[H]%
+    \center%
+    \includegraphics[width=1\textwidth]{images/building an inverted index.png}%
+     % you need to add the caption for the list of figures
+    \caption[This is building an inverted index]{building an inverted index}\label{fig:building an inverted index}%
+ \end{figure}
+ 
+To gain the speed benefits of indexing at retrieval time, we have to build the
+index in advance. The major steps in this are:
+
+1.Collect the documents to be indexed.
+
+2.Tokenize the text, turning each document into a list of tokens.
+
+3.Do linguistic preprocessing , producing a list of normalized tokens, which
+  are the indexing terms.
+  
+4.Index the documents that each term occurs in by creating an inverted index,
+  consisting of a dictionary and postings.
+
+\begin{itemize}
+     \item \textbf{Tokenization}\\
+     Given a character sequence and a defined document unit, tokenization is the
+     task of chopping it up into pieces, called tokens, perhaps at the same time
+     throwing away certain characters, such as punctuation.
+     
+     
+     \item \textbf{Dropping common terms: stop words}\\
+     Sometimes, some extremely common words which would appear to be of
+     little value in helping select documents matching a user need are excluded
+     from the vocabulary entirely. These words are called STOP WORDS stop words. The general strategy for determining a stop list is to sort the terms by collection frequency (the total number of times each term appears in the document collection),and then to take the most frequent terms, often hand-filtered for their semantic content relative to the domain of the documents being indexed.
+     
+     
+     \item  \textbf{Normalization}\\
+     Having broken up our documents (and also our query) into tokens, the easy
+     case is if tokens in the query just match tokens in the token list of the document.
+     However, there are many cases when two character sequences are not quite the same but you would like a match to occur. For instance, if you search for USA, you might hope to also match documents containing U.S.A .Token normalization is the process of canonicalizing tokens so that matches occur despite superficial differences in the character sequences of the to kens.
+      
+      
+\end{itemize} 
+ 
+ 
+
+
