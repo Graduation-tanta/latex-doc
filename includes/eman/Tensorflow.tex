@@ -5,30 +5,30 @@
   % SUBSECTION               %
   %%%%%%%%%%%%%%%%%%%%%%%%%%%%
   \subsection{Introduction}
-    The Google Brain project started in 2011 to explore the use of very-large-scale deep neural networks, both for research and for use in Google’s products. As part of the early work in this project, they built DistBelief, their first-generation scalable distributed training and inference system, and this system has served them well. They and others at Google have performed a wide variety of research using DistBelief including work on unsupervised learning, language representation, models for image classification and object detection, video classification, speech recognition, sequence prediction, move selection for Go, pedestrian detection, reinforcement learning, and other areas. In addition, often in close collaboration with the Google Brain team, more than 50 teams at Google and other Alphabet companies have deployed deep neural networks using DistBelief in a wide variety of products, including Google Search, Their advertising products, speech recognition systems, Google Photos, Google Maps and StreetView, Google Translate, YouTube, and many others.\\
-    Based on their experience with DistBelief and a more complete understanding of the desirable system properties and requirements for training and using neural networks, they have built TensorFlow, their second-generation system for the implementation and deployment of largescale machine learning models. TensorFlow takes computations described using a dataflow-like model and maps them onto a wide variety of different hardware platforms, ranging from running inference on mobile device platforms such as Android and iOS to modestsized training and inference systems using single machines containing one or many GPU cards to large-scale training systems running on hundreds of specialized machines with thousands of GPUs. Having a single system that can span such a broad range of platforms significantly simplifies the real-world use of machine learning system, as they have found that having separate systems for large-scale training and small-scale deployment leads to significant maintenance burdens and leaky abstractions.\\
-    TensorFlow is an interface for expressing machine learning algorithms, and an implementation for executing such algorithms. A computation expressed using TensorFlow can be executed with little or no change on a wide variety of heterogeneous systems, ranging from mobile devices such as phones and tablets up to large-scale distributed systems of hundreds of machines and thousands of computational devices such as GPU cards. The system is flexible and can be used to express a wide variety of algorithms, including training and inference algorithms for deep neural network models, and it has been used for conducting research and for deploying machine learning systems into production across more than a dozen areas of computer science and other fields, including speech recognition, computer vision, robotics, information retrieval, natural language processing, geographic information extraction, and computational drug discovery.\\
-    TensorFlow is an open-source software library for dataflow programming across a range of tasks, and is arguably one of the best deep learning frameworks and has been adopted by several giants such as Airbus, Twitter, IBM, and others mainly due to its highly flexible system architecture. It is available on both desktop and mobile and also supports languages such as Python, C++, and R to create deep learning models along with wrapper libraries.\\
+    The Google Brain project started in 2011 to explore the use of very-large-scale deep neural networks, both for research and for use in Google’s products. As part of the early work in this project, they built DistBelief, their first-generation scalable distributed training and inference system, and this system has served them well. They and others at Google have performed a wide variety of research using DistBelief including work on unsupervised learning, language representation, models for image classification and object detection, video classification, speech recognition, sequence prediction, move selection for Go, pedestrian detection, reinforcement learning, and other areas. In addition, often in close collaboration with the Google Brain team, more than 50 teams at Google and other Alphabet companies have deployed deep neural networks using DistBelief in a wide variety of products, including Google Search, Their advertising products, speech recognition systems, Google Photos, Google Maps and StreetView, Google Translate, YouTube, and many others.\cite{tensorflow2015-whitepaper}\\
+    Based on their experience with DistBelief and a more complete understanding of the desirable system properties and requirements for training and using neural networks, they have built TensorFlow, their second-generation system for the implementation and deployment of largescale machine learning models. TensorFlow takes computations described using a dataflow-like model and maps them onto a wide variety of different hardware platforms, ranging from running inference on mobile device platforms such as Android and iOS to modestsized training and inference systems using single machines containing one or many GPU cards to large-scale training systems running on hundreds of specialized machines with thousands of GPUs. Having a single system that can span such a broad range of platforms significantly simplifies the real-world use of machine learning system, as they have found that having separate systems for large-scale training and small-scale deployment leads to significant maintenance burdens and leaky abstractions.\cite{tensorflow2015-whitepaper}\\
+    TensorFlow is an interface for expressing machine learning algorithms, and an implementation for executing such algorithms. A computation expressed using TensorFlow can be executed with little or no change on a wide variety of heterogeneous systems, ranging from mobile devices such as phones and tablets up to large-scale distributed systems of hundreds of machines and thousands of computational devices such as GPU cards. The system is flexible and can be used to express a wide variety of algorithms, including training and inference algorithms for deep neural network models, and it has been used for conducting research and for deploying machine learning systems into production across more than a dozen areas of computer science and other fields, including speech recognition, computer vision, robotics, information retrieval, natural language processing, geographic information extraction, and computational drug discovery.\cite{tensorflow2015-whitepaper}\\
+    TensorFlow is an open-source software library for dataflow programming across a range of tasks, and is arguably one of the best deep learning frameworks and has been adopted by several giants such as Airbus, Twitter, IBM, and others mainly due to its highly flexible system architecture. It is available on both desktop and mobile and also supports languages such as Python, C++, and R to create deep learning models along with wrapper libraries.\cite{web005}
     \subsubsection{CUDA and TensorFlow}
     CUDA or Compute Unified Device Architecture is an API for Parallel Computing by NVIDIA. CUDA allows you to harness the power of your GPU for computing applications. They (GPUs) can do parallel processing much faster/better than traditional chips (CPUs).\\
     Now, if you've gone through the install docs for Tensorflow using NVIDIA GPUs, you will notice they ask you to install CUDA libraries and toolkits first. It is only then, that Tensorflow can harness the power and speed of computation that your GPU would offer you.\\
     Tensorflow will access the better computation power of NVIDIA GPUs via (or using, both terms are interchangeable here) the CUDA API.\\
-    You can absolutely perform tensorflow’s computations from GPUs, but in case you're using an NVIDIA GPU, you need to have CUDA installed so that Tensorflow can actually access what that awesome NVIDIA GPU has to offer with all its parallel computing capable, CUDA Cores.\\
+    You can absolutely perform tensorflow’s computations from GPUs, but in case you're using an NVIDIA GPU, you need to have CUDA installed so that Tensorflow can actually access what that awesome NVIDIA GPU has to offer with all its parallel computing capable, CUDA Cores.
     \subsection{Tensors}
     TensorFlow, as the name indicates, is a framework to define and run computations involving tensors. A tensor is a generalization of vectors and matrices to potentially higher dimensions. Internally, TensorFlow represents tensors as n-dimensional arrays of base datatypes.\\
-    When writing a TensorFlow program, the main object you manipulate and pass around is the. A \textbf{tf.Tensor} object represents a partially defined computation that will eventually produce a value. TensorFlow programs work by first building a graph of \textbf{tf.Tensor} objects, detailing how each tensor is computed based on the other available tensors and then by running parts of this graph to achieve the desired results.\\
+    When writing a TensorFlow program, the main object you manipulate and pass around is the. A \textbf{tf.Tensor} object represents a partially defined computation that will eventually produce a value. TensorFlow programs work by first building a graph of \textbf{tf.Tensor} objects, detailing how each tensor is computed based on the other available tensors and then by running parts of this graph to achieve the desired results.\cite{web006}\\
     A \textbf{tf.Tensor} has the following properties:
     \begin{enumerate}
-      \item\textcite{a data type (float32, int32, or string, for example)}
-      \item\textcite{a shape}
+      \item\textbf{a data type}\\ 
+      (float32, int32, or string, for example)
+      \item\textbf{a shape}
       \end{enumerate}
-      Each element in the Tensor has the same data type, and the data type is always known. The shape (that is, the number of dimensions it has and the size of each dimension) might be only partially known. Most operations produce tensors of fully-known shapes if the shapes of their inputs are also fully known, but in some cases it's only possible to find the shape of a tensor at graph execution time.\\
-      The main types of tensors are:
+      Each element in the Tensor has the same data type, and the data type is always known. The shape (that is, the number of dimensions it has and the size of each dimension) might be only partially known. Most operations produce tensors of fully-known shapes if the shapes of their inputs are also fully known, but in some cases it's only possible to find the shape of a tensor at graph execution time.
     \subsubsection{Types of tensors}
       \begin{enumerate}
-    \item\textcite{tf.Variable}
-    \item\textcite{tf.constant}
-    \item\textcite{tf.placeholder}
+    \item\textbf{tf.Variable}
+    \item\textbf{tf.constant}
+    \item\textbf{tf.placeholder}
     \end{enumerate}
     \paragraph{Variables}
     A variable maintains state in the graph across calls to run(). You add a variable to the graph by constructing an instance of the class Variable.
@@ -96,37 +96,37 @@ with tf.Session() as sess:
  \hline
  
 \end{tabular}
-\caption{Operations of Tensorflow}
+\caption{Operations of Tensorflow \cite{web010}}
 \label{table:1}
 
 \end{table}
 
 \subsection{Graphs and Sessions}
 TensorFlow uses a dataflow graph to represent your computation in terms of the dependencies between individual operations. This leads to a low-level programming model in which you first define the dataflow graph, then create a TensorFlow session to run parts of the graph across a set of local and remote devices.\\
+  \textbf{Why Dataflow Graphs?}\\
+  Dataflow is a common programming model for parallel computing. In a dataflow graph, the nodes represent units of computation, and the edges represent the data consumed or produced by a computation.\\
+  For example, in a TensorFlow graph, the \textbf{tf.matmul} operation would correspond to a single node with two incoming edges (the matrices to be multiplied) and one outgoing edge (the result of the multiplication).\\
+Dataflow has several advantages that TensorFlow leverages when executing programs:
+\begin{enumerate}
+      \item\textbf{Parallelism.}
+\item\textbf{Distributed execution.}
+\item\textbf{Compilation.}
+\item\textbf{Portability.}
+\end{enumerate}
 \begin{figure}[H]%
     \center%
     \includegraphics[width=0.5\textwidth]{images/eman/Dataflow-graph.jpg}%
      % you need to add the caption for the list of figures
 \caption[This is Dataflow Graph]{Dataflow Graph}\label{fig:graph}%
   \end{figure}
-  
-  \textbf{Why Dataflow Graphs?}\\
-Dataflow is a common programming model for parallel computing. In a dataflow graph, the nodes represent units of computation, and the edges represent the data consumed or produced by a computation. For example, in a TensorFlow graph, the tf.matmul operation would correspond to a single node with two incoming edges (the matrices to be multiplied) and one outgoing edge (the result of the multiplication).\\
-Dataflow has several advantages that TensorFlow leverages when executing your programs:
-\begin{enumerate}
-      \item\textcite{Parallelism.}
-\item\textcite{Distributed execution.}
-\item\textcite{Compilation.}
-\item\textcite{Portability.}
-\end{enumerate}
 
 \paragraph{Graphs}
 A \textbf{tf.Graph} contains two relevant kinds of information:
 \begin{enumerate}
-      \item\textcite{Graph structure}\\
+      \item\textbf{Graph structure}\\
       The nodes and edges of the graph, indicating how individual operations are composed together, but not prescribing how they should be used. The graph structure is like assembly code: inspecting it can convey some useful information, but it does not contain all of the useful context that source code conveys.
       
-      \item\textcite{Graph collections}\\
+      \item\textbf{Graph collections}\\
       TensorFlow provides a general mechanism for storing collections of metadata in a \textbf{tf.Graph.} The \textbf{tf.add-to-collection} function enables you to associate a list of objects with a key (where \textbf{tf.GraphKeys} defines some of the standard keys), and \textbf{tf.get-collection} enables you to look up all objects associated with a key. Many parts of the TensorFlow library use this facility: for example, when you create a \textbf{tf.Variable}, it is added by default to collections representing "global variables" and "trainable variables". When you later come to create a \textbf{tf.train.Saver} or \textbf{tf.train.Optimizer}, the variables in these collections are used as the default arguments.
       
 \end{enumerate}
@@ -144,24 +144,26 @@ with tf.Session("grpc://example.org:2222"):
 \end{lstlisting}
 
     Since a \textbf{tf.Session} owns physical resources (such as GPUs and network connections), it is typically used as a context manager (in a with block) that automatically closes the session when you exit the block. It is also possible to create a session without using a with block, but you should explicitly call \textbf{tf.Session.close} when you are finished with it to free the resources.\\
-    \textbf{Note: }In Tensorflow you have an execution graph, which takes inputs and produces outputs. Naturally you \textbf{feed} the inputs into the graph, run it, and then \textbf{fetch} the outputs back into your program.\\
+    \textbf{Note: }In Tensorflow you have an execution graph, which takes inputs and produces outputs. Naturally you \textbf{feed} the inputs into the graph, run it, and then \textbf{fetch} the outputs back into your program.
     \subsection{Save and restore models}
     \subsubsection{Meta graph}
     This is a protocol buffer which saves the complete Tensorflow graph; i.e. all variables, operations, collections etc. This file has .meta extension.
     \subsubsection{Checkpoints}
     TensorFlow provides two model formats:
     \begin{enumerate}
-      \item\textcite{checkpoints}\\
+      \item\textbf{checkpoints}\\
       which is a format dependent on the code that created the model.
-    \item\textcite{SavedModel}\\ 
+    \item\textbf{SavedModel}\\ 
     which is a format independent of the code that created the model.
     \end{enumerate}
 Here, we will focus on checkpoints.\\
 \textbf{Saving partially-trained models}\\
 Estimators automatically write the following to disk:
 \begin{enumerate}
-      \item\textcite{checkpoints, }which are versions of the model created during training.
-      \item\textcite{event files, }which contain information that TensorBoard uses to create visualizations.
+      \item\textbf{checkpoints}\\
+      which are versions of the model created during training.
+      \item\textbf{event files}\\
+      which contain information that TensorBoard uses to create visualizations.
       \end{enumerate}
       To specify the top-level directory in which the Estimator stores its information, assign a value to the optional model-dir argument of any Estimator's constructor. For example, the following code sets the model-dir argument to the models/iris directory:
       \begin{lstlisting}[language=Python]
