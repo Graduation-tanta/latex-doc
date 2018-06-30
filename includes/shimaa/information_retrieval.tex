@@ -47,7 +47,7 @@ Because the number of possible queries is huge ; Our goal is to develop a system
 
 \subsection{inverted index}
 
-An nverted index is index always maps back from terms to the parts of a document where they occur. Nevertheless, inverted index, or sometimes inverted file, has become the standard termin information retrieval.
+An inverted index is index always maps back from terms to the parts of a document where they occur. Nevertheless, inverted index, or sometimes inverted file, has become the standard termin information retrieval.
  
 \subsubsection{A first take at building an inverted index}
 
@@ -56,7 +56,7 @@ An nverted index is index always maps back from terms to the parts of a document
     \includegraphics[width=0.6\textwidth]{images/shimaa/building an inverted index.png}
      % you need to add the caption for the list of figures
     \caption[This is building an inverted index]{building an inverted index}\label{fig:building an inverted index}%
- \end{figure}
+\end{figure}
  
 To gain the speed benefits of indexing at retrieval time, we have to build the
 index in advance. The major steps in this are:
@@ -98,10 +98,17 @@ index in advance. The major steps in this are:
     
     The goal of both stemming is to reduce inﬂectional forms and sometimes derivationally related forms of a word to a common base form.
     For instance:
-    am, are,is⇒be 
-    car, cars, car’s, cars’⇒car 
+    
+    am, are,is \Rightarrow  be 
+    
+    
+    car, cars, car’s, cars’ \Rightarrow  car 
+      
+    
     The result of this mapping of text will be something like:
-    the boy’s cars are different colors⇒ the boy car be differ color
+      
+    
+    the boy’s cars are different colors  \Rightarrow   the  boy  car  be  differ   color
       
       
 \end{itemize} 
@@ -115,7 +122,7 @@ number a human user could possibly sift through. Accordingly, it is essential
 for a search engine to rank-order the documents matching a query. 
 To do this, the search engine computes, for each matching document, a score with
 respect to the query at hand. 
-we initiate the study of assigning a score to a (query, document) pair.
+we initiate the study of assigning a score to a ( query, document ) pair.
 
 \subsubsection{term frequency}
 
@@ -165,7 +172,7 @@ too often in the collection to be meaningful for relevance determination.
 
 
 How is the document frequency df of a term used to scale its weight? 
-Denoting as usual the total number of documents in a collection by N,we define the inverse document frequency (idf) of a term t as follows:
+Denoting as usual the total number of documents in a collection by N,we define the inverse document frequency \( idf \) of a term t as follows:
 
 \begin{equation}
         \large 
@@ -193,20 +200,70 @@ documents (thus offering a less pronounced relevance signal).
 3. lowest when the term occurs in virtually all documents.     
 
 \begin{itemize}
-     \item \textbf{DOCUMENT VECTOR}\\
-   At this point, we may view each document as a vector with one component
-   corresponding to each term in the dictionary, together with a weight for each
-   component that is given by (4.3). For dictionary terms that do not occur in
-   a document, this weight is zero. This vector form will prove to be crucial to
-   scoring and ranking .
+     \item \textbf{Document Vector}\\
+    At this point, we may view each document as a vector with one component
+    corresponding to each term in the dictionary, together with a weight for each
+    component that is given by (4.3). For dictionary terms that do not occur in
+    a document, this weight is zero. This vector form will prove to be crucial to
+    scoring and ranking .
 
-   As a first step, we introduce the overlap score measure: the score of a document d is the sum, over all query terms, of the number of times each of the query terms occurs in d. We can refine this idea so that we add up not the number of occurrences of each query term t in d, but instead the tf-idf weight of each term in d.
+    As a first step, we introduce the overlap score measure: the score of a document d is the sum, over all query terms, of the number of times each of the query terms occurs in d. We can refine this idea so that we add up not the number of occurrences of each query term t in d, but instead the tf-idf weight of each term in d.
    
    \begin{equation}
         \large
          \text{score}(q,d) =\sum tf-idf_{t,d}. \end{equation}
 \end{itemize}
- 
- 
 
+
+\subsection{The vector space model for scoring}
+
+We developed the notion of a document vector that captures the relative importance of the terms in a document. 
+The representation of a set of documents as vectors in a common vector space is known as the vector space model and is fundamental to a host of information retrieval operations ranging from scoring documents on a query, document classification and document clustering.
+
+\begin{itemize}
+     \item \textbf{Dot products}\\
+     We denote by V(d) the vector derived from document d, with one component in the vector for each dictionary term. Unless otherwise specified,the reader may assume that the components are computed using the tf-idf weighting scheme, although the particular weighting scheme is immaterial to the discussion that follows: 
+     The set of documents in a collection then may be viewed as a set of vectors in a vector space, in which there is one axis for each term.              This representation loses the relative ordering of the terms in each document.
+      
+     
+\end{itemize}
+
+\begin{itemize}
+     \item \textbf{Euclidean distance}\\
+     distance between two points (distance between the end points of the two vectors). 
+     Euclidean distance is a bad idea because Euclidean distance is large for vectors of different lengths.
+     
+     
+\begin{figure}[H]%
+    \center%
+    \includegraphics[width=0.6\textwidth]{images/shimaa/Euclidean distance.png}
+     % you need to add the caption for the list of figures
+    \caption[This is Euclidean distance]{Euclidean distance}\label{fig:Euclidean distance}%
+   \end{figure}
+
+   The Euclidean distance between\displaystyle  $$\vec{q} \textrm{ and }\vec{d2 } \textrm{  is large even though the distribution of terms in the query}\\ \displaystyle \vec{q}\textrm{  and the distribution of terms in the document} \vec{d2} \textrm {  are very similar}$$.  
+  
+\end{itemize}   
+
+\subsection{cosine similarity}
+
+How do we quantify the similarity between two documents in this vector
+space? A first attempt might consider the magnitude of the vector difference
+between two document vectors.
+This measure suffers from a drawback: two documents with very similar content can have a significant vector difference simply because one is much longer than the other. Thus the relative distributions of terms may be identical in the two documents, but the absolute term frequencies of one may be far larger.
+
+To compensate for the effect of document length, the standard way of
+quantifying the similarity between two documents d1 and d2 is to compute
+the cosine similarity of their vector representations \displaystyle $$\vec{V}(d_1) \textrm{and} \vec{V}(d_2) $$.
+
+\begin{equation}
+    \large
+         \text{sim}(d_1 ,d_2) \\
+         =\frac{\vec{V}( d_1 ) . \vec{V}( d_2 ) } {|\vec{V}( d_1 )| |\vec{V}( d_2 )|}
+\end{equation}
+
+
+The effect of the denominator of Equation (4.5) is thus to length-normalize
+the vectors \displaystyle $$\vec{V}(d_1) \textrm{and}\vec{V}(d_2)
+\textrm{ to unit vectors } \vec{V}(d_1) = \vec{V}(d_1) /|\vec{V}(d_2)|  \textrm{and} \vec{V}(d_2) = \vec{V}(d_1) .|\vec{V}(d_2)|$$.
 
