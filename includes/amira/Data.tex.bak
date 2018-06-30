@@ -1,0 +1,31 @@
+\begin{document}{12pt} 
+
+
+\section{Data}
+\label{chap:Data}
+
+  %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  % SUBSECTION               %
+  %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+Our work relies on three types of data:
+ \begin{enumerate}
+     \item \textbf{Wikipedia} that serves as our knowledge source for finding
+     answers.
+     \item \textbf{SQuAD} dataset which is our main resource to train
+     Document Reader.
+     \item three more \textbf{QA} datasets (\textbf{CuratedTREC}, 
+     \textbf{WebQuestions} and \textbf{WikiMovies})that in addition to SQuAD,
+     are used to test the open-domain QA abilities of our full system, and to
+     evaluate the ability of our model to learn 
+     from multitask learning and distant supervision.
+ \end{enumerate}
+  \subsection{Wikipedia (Knowledge Source)}
+  We use the dump \cite{web021} of English Wikipedia for all of our full-
+  scale experiments as the knowledge source used to answer questions. For
+  each page, only the plain text is extracted and all structured data
+  sections such as lists and figures are stripped \cite{web022}.After
+  discarding internal disambiguation, list, index, and outline pages, we
+  retain 5,075,182 articles consisting of 9,008,962 unique uncased token
+  types.
+  \subsection{}
+\end{document}
