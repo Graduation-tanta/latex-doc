@@ -34,7 +34,7 @@ Unrolling can speed-up a RNN, although it tends to be more memory-intensive. Unr
 RNNs are fit and make predictions over many time steps. We can simplify the model by unfolding or unrolling the RNN graph over the input sequence. Also, this “full unrolling” makes a parallel training with multiple sequences inefficient on shared memory models such as graphics processing units (GPUs).\cite{web014} Unrolling of the forward pass when the network is copied for each input time step. Unrolling of the backward pass for updating network weights during training.
   \begin{figure}[H]%
     \center%
-    \includegraphics[width=\textwidth]{images/amir/unroll_rnn.png}
+    \includegraphics[width=.8\textwidth]{images/amir/unroll_rnn.png}
      % you need to add the caption for the list of figures
     \caption[This is a unrolling rnn image]{unrolling rnn for generating sequence}\label{fig:unrolling rnn}%
   \end{figure}
