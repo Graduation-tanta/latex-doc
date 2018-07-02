@@ -7,9 +7,9 @@ The meaning of the term information retrieval can be very broad. Just getting a 
 
 Information retrieval (IR) is finding material (usually documents) of an unstructured nature (usually text) that satisfies an information need from within large collections (usually stored on computers). As defined in this way, information retrieval used to be an activity that only a few people engaged in: reference librarians, paralegals, and similar professional searchers.
 
-Now the world has changed, and hundreds of millions of people engage in information retrieval every day when they use a web search engine or search their email.1 Information retrieval is fast becoming the dominant form of information access, overtaking traditional database style searching (the sort that is going on when a clerk says to you:( “I’m sorry, I can only look up your order if you can give me your Order ID”).
+Now the world has changed, and hundreds of millions of people engage in information retrieval every day when they use a web search engine or search their email.1 Information retrieval is fast becoming the dominant form of information access, overtaking traditional database style searching (the sort that is going on when a clerk says to you:( "I'm sorry, I can only look up your order if you can give me your Order ID").
  
-IR can also cover other kinds of data and information problems beyond that specified in the core definition above. The term “unstructured data” refers to data which does not have clear, semantically overt, easy-for-a-computer structure. It is the opposite of structured data, the canonical example of which is a relational database, of the sort companies usually use to maintain product inventories and personnel records. In reality, almost no data are truly “unstructured”. This is definitely true of all text data if you count the latent linguistic structure of human languages. But even accepting that the intended notion of structure is overt structure, most text has structure, such as headings and paragraphs and footnotes, which is commonly represented in documents by explicit markup (such as the coding underlying web pages).
+IR can also cover other kinds of data and information problems beyond that specified in the core definition above. The term "unstructured data" refers to data which does not have clear, semantically overt, easy-for-a-computer structure. It is the opposite of structured data, the canonical example of which is a relational database, of the sort companies usually use to maintain product inventories and personnel records. In reality, almost no data are truly "unstructured". This is definitely true of all text data if you count the latent linguistic structure of human languages. But even accepting that the intended notion of structure is overt structure, most text has structure, such as headings and paragraphs and footnotes, which is commonly represented in documents by explicit markup (such as the coding underlying web pages).
 
 Information retrieval systems can also be distinguished by the scale at
 which they operate, and it is useful to distinguish three prominent scales.
@@ -55,7 +55,7 @@ An inverted index is index always maps back from terms to the parts of a documen
     \center%
     \includegraphics[width=0.6\textwidth]{images/shimaa/building an inverted index.png}
      % you need to add the caption for the list of figures
-    \caption[This is building an inverted index]{building an inverted index}\label{fig:building an inverted index}%
+    \caption[building an inverted index]{building an inverted index}\label{fig:building an inverted index}%
 \end{figure}
  
 To gain the speed benefits of indexing at retrieval time, we have to build the
@@ -96,19 +96,12 @@ index in advance. The major steps in this are:
     \item  \textbf{stemming}\\
     For grammatical reasons, documents are going to use different forms of a word,such as organize,organizes,and organizing. Additionally,there are families of derivationally related words with similar meanings,such as democracy, democratic, and democratization. In many situations, it seems as if it would be useful for a search for one of these words to return documents that contain another word in the set.
     
-    The goal of both stemming is to reduce inﬂectional forms and sometimes derivationally related forms of a word to a common base form.
-    For instance:
-    
-    am, are,is \Rightarrow  be 
-    
-    
-    car, cars, car’s, cars’ \Rightarrow  car 
-      
-    
-    The result of this mapping of text will be something like:
-      
-    
-    the boy’s cars are different colors  \Rightarrow   the  boy  car  be  differ   color
+    The goal of both stemming is to reduce inflectional forms and sometimes derivationally related forms of a word to a common base form.
+    For instance:\\
+    am, are,is $\Rightarrow$  be \\
+    car, cars, car's, cars' $\Rightarrow$  car \\
+    The result of this mapping of text will be something like:\\
+    the boy's cars are different colors  $\Rightarrow$   the  boy  car  be  differ   color
       
       
 \end{itemize} 
@@ -137,14 +130,13 @@ in d to a positive real value) may be viewed as a quantitative digest of that
 document.
 
 
-\begin{itemize}
-     \item \textbf{The log frequency weight of term t in d is}\\
+The log frequency weight of term t in d is\\
 \begin{equation}
-        \large 
-           W_{t,d} =\left\{ \begin{array}{c1} 1+\log_{10}(tf_{t,d}) & \text{if  } 
-           tf_{t,d} > 0 \\ 0 & \text{otherwise.} \end{array}\right.\end{equation}
-\end{itemize}
-
+    W_{t,d} =\begin{cases} 
+   1+\log_{10}\text{tf}_{t,d} &\quad \text{if  }\text{tf}_{t,d} > 0  \\ 0  &\quad  \text{otherwise.} \end{cases}
+\end{equation}
+  
+       
 
 \begin{itemize}
      \item \textbf{Bag of words}\\
@@ -154,7 +146,7 @@ document.
      retrieval). 
      We only retain information on the number of occurrences of each term. 
     
-     The document “Mary is quicker than John” is, in this view, identical to the document “John is quicker than Mary”. it seem intuitive that two documents with similar bag of words representations are
+     The document "Mary is quicker than John" is, in this view, identical to the document "John is quicker than Mary". it seem intuitive that two documents with similar bag of words representations are
      similar in content.
 \end{itemize} 
 
@@ -172,7 +164,7 @@ too often in the collection to be meaningful for relevance determination.
 
 
 How is the document frequency df of a term used to scale its weight? 
-Denoting as usual the total number of documents in a collection by N,we define the inverse document frequency \( idf \) of a term t as follows:
+Denoting as usual the total number of documents in a collection by N,we define the inverse document frequency ( idf ) of a term t as follows:
 
 \begin{equation}
         \large 
@@ -183,13 +175,12 @@ Denoting as usual the total number of documents in a collection by N,we define t
 We now combine the definitions of term frequency and inverse document
 frequency, to produce a composite weight for each term in each document.
 
-The tf-idf weighting scheme assigns to term t a weight in document d given
-by
+The tf-idf weighting scheme assigns to term t a weight in document d given by
 \begin{equation}
     \large
-     tf-idf_{t,d} = tf_{t,d } * idf_{t} \end{equation}  
+     \text{tf-idf}_{t,d} =\text{ tf-idf}_{t,d } *\text{ idf}_{t} \end{equation}  
      
-In other words, tf-idf t,d assigns to term t a weight in document d that is
+In other words,$\text{tf-idf}_{t,d}$  assigns to term t a weight in document d that is
 
 1. highest when t occurs many times within a small number of documents
 (thus lending high discriminating power to those documents).
@@ -202,16 +193,14 @@ documents (thus offering a less pronounced relevance signal).
 \begin{itemize}
      \item \textbf{Document Vector}\\
     At this point, we may view each document as a vector with one component
-    corresponding to each term in the dictionary, together with a weight for each
-    component that is given by (4.3). For dictionary terms that do not occur in
-    a document, this weight is zero. This vector form will prove to be crucial to
-    scoring and ranking .
+    corresponding to each term in the dictionary, together with a weight for each component that is given by (4.3). 
+    For dictionary terms that do not occur in a document, this weight is zero. This vector form will prove to be crucial to scoring and ranking .
 
     As a first step, we introduce the overlap score measure: the score of a document d is the sum, over all query terms, of the number of times each of the query terms occurs in d. We can refine this idea so that we add up not the number of occurrences of each query term t in d, but instead the tf-idf weight of each term in d.
    
    \begin{equation}
         \large
-         \text{score}(q,d) =\sum tf-idf_{t,d}. \end{equation}
+         \text{score}(q,d) =\sum_{t \in q\cap d} \text{tf-idf}_{t,d}. \end{equation}
 \end{itemize}
 
 
@@ -222,7 +211,7 @@ The representation of a set of documents as vectors in a common vector space is 
 
 \begin{itemize}
      \item \textbf{Dot products}\\
-     We denote by V(d) the vector derived from document d, with one component in the vector for each dictionary term. Unless otherwise specified,the reader may assume that the components are computed using the tf-idf weighting scheme, although the particular weighting scheme is immaterial to the discussion that follows: 
+     We denote by $\vec{V(d)}$ the vector derived from document d, with one component in the vector for each dictionary term. Unless otherwise specified,the reader may assume that the components are computed using the tf-idf weighting scheme, although the particular weighting scheme is immaterial to the discussion that follows: 
      The set of documents in a collection then may be viewed as a set of vectors in a vector space, in which there is one axis for each term.              This representation loses the relative ordering of the terms in each document.
       
      
@@ -238,10 +227,10 @@ The representation of a set of documents as vectors in a common vector space is 
     \center%
     \includegraphics[width=0.6\textwidth]{images/shimaa/Euclidean distance.png}
      % you need to add the caption for the list of figures
-    \caption[This is Euclidean distance]{Euclidean distance}\label{fig:Euclidean distance}%
+    \caption[ Euclidean distance]{Euclidean distance}\label{fig:Euclidean distance}%
    \end{figure}
 
-   The Euclidean distance between\displaystyle  $$\vec{q} \textrm{ and }\vec{d2 } \textrm{  is large even though the distribution of terms in the query}\\ \displaystyle \vec{q}\textrm{  and the distribution of terms in the document} \vec{d2} \textrm {  are very similar}$$.  
+   The Euclidean distance between $\vec{q}$ and $\vec{d_2}$  is large even though the distribution of terms in the query $\vec{q}$ and the distribution of terms in the document$\vec{d_2}$ are very similar.  
   
 \end{itemize}   
 
@@ -254,7 +243,8 @@ This measure suffers from a drawback: two documents with very similar content ca
 
 To compensate for the effect of document length, the standard way of
 quantifying the similarity between two documents d1 and d2 is to compute
-the cosine similarity of their vector representations \displaystyle $$\vec{V}(d_1) \textrm{and} \vec{V}(d_2) $$.
+the cosine similarity of their vector representations 
+$\vec{V}(d_1)$ and $\vec{V}(d_2)$.
 
 \begin{equation}
     \large
@@ -263,7 +253,17 @@ the cosine similarity of their vector representations \displaystyle $$\vec{V}(d_
 \end{equation}
 
 
-The effect of the denominator of Equation (4.5) is thus to length-normalize
-the vectors \displaystyle $$\vec{V}(d_1) \textrm{and}\vec{V}(d_2)
-\textrm{ to unit vectors } \vec{V}(d_1) = \vec{V}(d_1) /|\vec{V}(d_2)|  \textrm{and} \vec{V}(d_2) = \vec{V}(d_1) .|\vec{V}(d_2)|$$.
+The effect of the denominator of Equation(4.5) is thus to length-normalize the vectors $\vec{V}(d_1)$ and $\vec{V}(d_2)$ 
+to unit vectors  $\vec{V}(d_1)$  =$\vec{V}(d_1)$  / $|$ $\vec{V}(d_2)$ $|$ and  $\vec{V}(d_2)$= $\vec{V}(d_1)$ .$|$ $\vec{V}(d_2)$ $|$. 
+
+For length normalized vectors, cosine similarity is simply the dot product (or scalar product):
+\begin{equation}
+    \cos{(\vec{q},\vec{d})} = \vec{q} .\vec{d} =\sum_{i=1}^{|V|} q_{i}  d_{i}
+\end{equation}
+\begin{figure}[H]%
+    \center%
+    \includegraphics[width=0.6\textwidth]{images/shimaa/cosine similarity.png}
+     % you need to add the caption for the list of figures
+    \caption[cosine similarity]{cosine similarity}\label{fig:cosine similarity}%
+\end{figure}
 
