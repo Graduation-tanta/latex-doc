@@ -8,7 +8,7 @@
     The Google Brain project started in 2011 to explore the use of very-large-scale deep neural networks, both for research and for use in Google’s products. As part of the early work in this project, they built DistBelief, their first-generation scalable distributed training and inference system, and this system has served them well. They and others at Google have performed a wide variety of research using DistBelief including work on unsupervised learning, language representation, models for image classification and object detection, video classification, speech recognition, sequence prediction, move selection for Go, pedestrian detection, reinforcement learning, and other areas. In addition, often in close collaboration with the Google Brain team, more than 50 teams at Google and other Alphabet companies have deployed deep neural networks using DistBelief in a wide variety of products, including Google Search, Their advertising products, speech recognition systems, Google Photos, Google Maps and StreetView, Google Translate, YouTube, and many others.\cite{tensorflow2015-whitepaper}\\
     Based on their experience with DistBelief and a more complete understanding of the desirable system properties and requirements for training and using neural networks, they have built TensorFlow, their second-generation system for the implementation and deployment of largescale machine learning models. TensorFlow takes computations described using a dataflow-like model and maps them onto a wide variety of different hardware platforms, ranging from running inference on mobile device platforms such as Android and iOS to modestsized training and inference systems using single machines containing one or many GPU cards to large-scale training systems running on hundreds of specialized machines with thousands of GPUs. Having a single system that can span such a broad range of platforms significantly simplifies the real-world use of machine learning system, as they have found that having separate systems for large-scale training and small-scale deployment leads to significant maintenance burdens and leaky abstractions.\cite{tensorflow2015-whitepaper}\\
     TensorFlow is an interface for expressing machine learning algorithms, and an implementation for executing such algorithms. A computation expressed using TensorFlow can be executed with little or no change on a wide variety of heterogeneous systems, ranging from mobile devices such as phones and tablets up to large-scale distributed systems of hundreds of machines and thousands of computational devices such as GPU cards. The system is flexible and can be used to express a wide variety of algorithms, including training and inference algorithms for deep neural network models, and it has been used for conducting research and for deploying machine learning systems into production across more than a dozen areas of computer science and other fields, including speech recognition, computer vision, robotics, information retrieval, natural language processing, geographic information extraction, and computational drug discovery.\cite{tensorflow2015-whitepaper}\\
-    TensorFlow is an open-source software library for dataflow programming across a range of tasks, and is arguably one of the best deep learning frameworks and has been adopted by several giants such as Airbus, Twitter, IBM, and others mainly due to its highly flexible system architecture. It is available on both desktop and mobile and also supports languages such as Python, C++, and R to create deep learning models along with wrapper libraries.\cite{web005}
+    TensorFlow is an open-source software library for dataflow programming across a range of tasks, and is arguably one of the best deep learning frameworks and has been adopted by several giants such as Airbus, Twitter, IBM, and others mainly due to its highly flexible system architecture. It is available on both desktop and mobile and also supports languages such as Python, C++, and R to create deep learning models along with wrapper libraries.\cite{web021}
     \subsubsection{CUDA and TensorFlow}
     CUDA or Compute Unified Device Architecture is an API for Parallel Computing by NVIDIA. CUDA allows you to harness the power of your GPU for computing applications. They (GPUs) can do parallel processing much faster/better than traditional chips (CPUs).\\
     Now, if you've gone through the install docs for Tensorflow using NVIDIA GPUs, you will notice they ask you to install CUDA libraries and toolkits first. It is only then, that Tensorflow can harness the power and speed of computation that your GPU would offer you.\\
@@ -16,7 +16,7 @@
     You can absolutely perform tensorflow’s computations from GPUs, but in case you're using an NVIDIA GPU, you need to have CUDA installed so that Tensorflow can actually access what that awesome NVIDIA GPU has to offer with all its parallel computing capable, CUDA Cores.
     \subsection{Tensors}
     TensorFlow, as the name indicates, is a framework to define and run computations involving tensors. A tensor is a generalization of vectors and matrices to potentially higher dimensions. Internally, TensorFlow represents tensors as n-dimensional arrays of base datatypes.\\
-    When writing a TensorFlow program, the main object you manipulate and pass around is the. A \textbf{tf.Tensor} object represents a partially defined computation that will eventually produce a value. TensorFlow programs work by first building a graph of \textbf{tf.Tensor} objects, detailing how each tensor is computed based on the other available tensors and then by running parts of this graph to achieve the desired results.\cite{web006}\\
+    When writing a TensorFlow program, the main object you manipulate and pass around is the. A \textbf{tf.Tensor} object represents a partially defined computation that will eventually produce a value. TensorFlow programs work by first building a graph of \textbf{tf.Tensor} objects, detailing how each tensor is computed based on the other available tensors and then by running parts of this graph to achieve the desired results.\cite{web022}\\
     A \textbf{tf.Tensor} has the following properties:
     \begin{enumerate}
       \item\textbf{a data type}\\ 
@@ -96,7 +96,7 @@ with tf.Session() as sess:
  \hline
  
 \end{tabular}
-\caption{Operations of Tensorflow \cite{web010}}
+\caption{Operations of Tensorflow}
 \label{table:1}
 
 \end{table}
@@ -188,6 +188,56 @@ As suggested by the following diagrams, the first call to train adds checkpoints
      % you need to add the caption for the list of figures
 \caption[This is first train call]{The first call to train()}\label{fig:call}%
   \end{figure}
+  
+  \subsection{Training}
+  \textbf{tf.train} provides a set of classes and functions that help train models.
+  \subsubsection{Optimizers}
+  The Optimizer base class provides methods to compute gradients for a loss and apply gradients to variables. A collection of subclasses implement classic optimization algorithms such as GradientDescent and Adagrad.\\
+You never instantiate the Optimizer class itself, but instead instantiate one of the subclasses.
+\begin{enumerate}
+      \item\textbf{tf.train.Optimizer}\\
+      This class defines the API to add Ops to train a model. We never use this class directly, but instead instantiate one of its subclasses such as GradientDescentOptimizer, AdagradOptimizer, or MomentumOptimizer.
+      \item\textbf{tf.train.GradientDescentOptimizer}\\
+      Optimizer that implements the gradient descent algorithm.
+      \item\textbf{tf.train.AdadeltaOptimizer}\\
+      Optimizer that implements the Adadelta algorithm.\cite{DBLP:journals/corr/abs-1212-5701}
+      \item\textbf{tf.train.AdadeltaOptimizer}\\
+      Optimizer that implements the Adagrad algorithm.\cite{Duchi:2011:ASM:1953048.2021068}
+      \item\textbf{tf.train.AdagradDAOptimizer}\\
+      Adagrad Dual Averaging algorithm for sparse linear models.
+This optimizer takes care of regularization of unseen features in a mini batch by updating them when they are seen with a closed form update rule that is equivalent to having updated them on every mini-batch.
+AdagradDA is typically used when there is a need for large sparsity in the trained model. This optimizer only guarantees sparsity for linear models. Be careful when using AdagradDA for deep networks as it will require careful initialization of the gradient accumulators for it to train.\cite{Duchi:2011:ASM:1953048.2021068}
+      \item\textbf{tf.train.MomentumOptimizer}\\
+      Optimizer that implements the Momentum algorithm.
+      \item\textbf{tf.train.AdamOptimizer}\\
+      Optimizer that implements the Adam algorithm.\cite{DBLP:journals/corr/KingmaB14}
+      \item\textbf{tf.train.FtrlOptimizer}\\
+      Optimizer that implements the FTRL algorithm.\cite{41159}
+      \item\textbf{tf.train.ProximalGradientDescentOptimizer}\\
+      Optimizer that implements the proximal gradient descent algorithm.\cite{NIPS2009_3793}
+      \item\textbf{tf.train.ProximalAdagradOptimizer}\\
+      Optimizer that implements the Proximal Adagrad algorithm.\cite{NIPS2009_3793}
+      \item\textbf{ \cite{web027}}\\
+      Optimizer that implements the RMSProp algorithm.\cite{web027}
+      \end{enumerate}
+      \subsection{Backpropagation}
+      Backpropagation is a method used in artificial neural networks to calculate a gradient that is needed in the calculation of the weights to be used in the network. It is commonly used to train deep neural networks, a term referring to neural networks with more than one hidden layer.
+      \subsubsection{Motivation}
+      The motivation for backpropagation is to train a multi-layered neural network such that it can learn the appropriate internal representations to allow it to learn any arbitrary mapping of input to output.
+      \subsubsection{Loss function}
+      Sometimes referred to as the cost function or error function (not to be confused with the Gauss error function), the loss function is a function that maps values of one or more variables onto a real number intuitively representing some "cost" associated with those values. For backpropagation, the loss function calculates the difference between the network output and its expected output, after a case propagates through the network.
+      \subsubsection{Optimization}
+      The optimization algorithm repeats a two phase cycle, propagation and weight update. When an input vector is presented to the network, it is propagated forward through the network, layer by layer, until it reaches the output layer. The output of the network is then compared to the desired output, using a loss function. The resulting error value is calculated for each of the neurons in the output layer. The error values are then propagated from the output back through the network, until each neuron has an associated error value that reflects its contribution to the original output.
+Backpropagation uses these error values to calculate the gradient of the loss function. In the second phase, this gradient is fed to the optimization method, which in turn uses it to update the weights, in an attempt to minimize the loss function.
+\subsubsection{Backpropagation with TensorFlow}
+As we now know, TensorFlow from Google is an open source library that primarily focuses on deep learning. It uses computational data-flow graphs to represent complicated neural-network architecture. The nodes in the graph denote mathematical computations, also called ops (operations), whereas the edges denote the data tensors transferred between them.\\
+Also, the relevant gradients are stored at each node of the computational graph, and during backpropagation these are combined to get the gradients with respect to each weight. Tensors are multi-dimensional data arrays used by TensorFlow.\\
+
+\textbf{RMSprop:}\\
+RMSprop is the mini-batch version of the resilient backpropagation (Rprop) optimization technique that works best for full-batch learning. Rprop solves the issue of gradients’ not pointing to the minimum in cases where the cost function contours are elliptical. In such cases, instead of a global learning rule a separate adaptive update rule for each weight would lead to better convergence. The special thing with Rprop is that it doesn’t use the magnitude of the gradients of the weight but only the signs in determining how to update each weight.\\
+
+
+  
 
 
 

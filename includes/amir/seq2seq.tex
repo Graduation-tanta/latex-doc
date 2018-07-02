@@ -9,7 +9,7 @@ Deep Neural Networks (DNNs) are extremely powerful machine learning models that 
 for a modest number of steps. Large
 DNNs can be trained with supervised backpropagation whenever the labeled training set has enough information to specify the network’s parameters according to \textit{Sequence to Sequence Learning
 with Neural Networks} paper. \cite{web015}\\
-seq2seq models have enjoyed great success in a variety of tasks.
+Seq2seq models have enjoyed great success in a variety of tasks.
 It is a relatively new paradigm,
 with its first published usage in 2014 for English-French translation at a high level.
 \subsection{Neural Machine Translation with Seq2Seq} 
@@ -92,17 +92,17 @@ literally use the context of the input to generate an output.
   \end{figure}
 Once the decoder is set up with its context, we’ll pass in a special
 token to signify the start of output generation; in literature, this is
-usually an <EOS> token appended to the end of the input (there’s
+usually an (EOS) token appended to the end of the input (there’s
 also one at the end of the output).
 Then, we’ll run all three layers of
-LSTM, one after the other, following up with a softmax on the final
+GRU, one after the other, following up with a softmax on the final
 layer’s output to generate the first output word.\\
 Once we have the output sequence, we use the same learning strategy
 as usual. We define a loss, the cross entropy on the prediction
 sequence, and we minimize it with a gradient descent algorithm and
 back-propagation. Both the encoder and decoder are trained at the
 same time, so that they both learn the same context vector representation.
-\subsection{Using Attenstion Mechanism}
+\subsection{Using Attention Mechanism}
 When you hear the sentence "the ball is on the field," you don’t assign
 the same importance to all 6 words. You primarily take note of
 the words "ball," "on," and "field," since those are the words that are
