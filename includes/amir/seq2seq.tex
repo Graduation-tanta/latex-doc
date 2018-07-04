@@ -37,7 +37,7 @@ models." An encoder converts a source sentence into a "Meaning" or "Thought" vec
   At a high level, the NMT model consists of two recurrent neural networks: the encoder RNN simply consumes the input source words without making any prediction; the decoder, on the other hand, processes the target sentence while predicting the next words.
    \begin{figure}[H]%
     \center%
-    \includegraphics[width=.9\textwidth]{images/amir/seq2seq.jpg}%
+    \includegraphics[width=.6\textwidth]{images/amir/seq2seq.jpg}%
      % you need to add the caption for the list of figures
     \caption[This is a seq2seq image]{ seq2seq-NMT architecture
     }\label{fig:seq2seq}%
@@ -55,9 +55,9 @@ GRU "layers" where each layer’s outputs are the input sequence to
 the next layer. The final layer’s GRU hidden state will be used as C.
  \begin{figure}[H]%
     \center%
-    \includegraphics[width=.5\textwidth]{images/amir/enc.png}%
+    \includegraphics[width=.4\textwidth]{images/amir/enc.png}%
      % you need to add the caption for the list of figures
-    \caption[This is a encoder image]{ encoder inside architecture \cite{web018}
+    \caption[This is a encoder image]{ a look inside Encoder architecture \cite{web018}
     }\label{fig:encoder}%
   \end{figure}
 Seq2Seq encoders will often do something strange: they will process
@@ -85,9 +85,9 @@ our first layer with the context vector from above; the decoder will
 literally use the context of the input to generate an output.
 \begin{figure}[H]%
     \center%
-    \includegraphics[width=.8\textwidth]{images/amir/dec.png}%
+    \includegraphics[width=.6\textwidth]{images/amir/dec.png}%
      % you need to add the caption for the list of figures
-    \caption[This is a decoder image]{ decoder inside architecture \cite{web018}
+    \caption[This is a decoder image]{ a look inside Decoder architecture \cite{web018}
     }\label{fig:decoder}%
   \end{figure}
 Once the decoder is set up with its context, we’ll pass in a special
@@ -115,7 +115,7 @@ decoding step; the decoder can then decide what input words are
 important at any point in time.\\
 \begin{figure}[H]%
     \center%
-    \includegraphics[width=.6\textwidth]{images/amir/Feeding-Hidden-State-as-Input-to-Decoder.png}%
+    \includegraphics[width=.5\textwidth]{images/amir/Feeding-Hidden-State-as-Input-to-Decoder.png}%
      % you need to add the caption for the list of figures
     \caption[This is a attention image]{using  attention as a layer
     }\label{fig:attention}%
