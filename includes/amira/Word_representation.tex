@@ -6,13 +6,13 @@
   %%%%%%%%%%%%%%%%%%%%%%%%%%%%
   \subsection{Introduction}
 
-Image and audio processing systems work with rich, high-dimensional datasets encoded as vectors of the individual raw pixel-intensities for image data, or power spectral density coefficients for audio data. For tasks like object or speech recognition we know that all the information required to successfully perform the task is encoded in the data. However, natural language processing systems traditionally treat words as discrete atomic symbols. These encodings are arbitrary, and provide no useful information to the system regarding the relationships that may exist between the individual symbols.Representing words as unique, discrete ids furthermore leads to data sparsity, and usually means that we may need more data in order to successfully train statistical models. Using vector representations can overcome some of these obstacles\cite{web003}\@.
+Image and audio processing systems work with rich, high-dimensional datasets encoded as vectors of the individual raw pixel-intensities for image data, or power spectral density coefficients for audio data. For tasks like object or speech recognition we know that all the information required to successfully perform the task is encoded in the data. However, natural language processing systems traditionally treat words as discrete atomic symbols. These encodings are arbitrary, and provide no useful information to the system regarding the relationships that may exist between the individual symbols.Representing words as unique, discrete ids furthermore leads to data sparsity, and usually means that we may need more data in order to successfully train statistical models. Using vector representations can overcome some of these obstacles\cite{web001}\@.
   
  \begin{figure}[H]%
     \center%
     \includegraphics[width=1\textwidth]{images/amira/audio-image-text.png}%
      % you need to add the caption for the list of figures
-    \caption[This is audio-image-text image]{audio-image-text image}\label{fig:audio-image-text}%
+    \caption[Audio-image-text representation]{audio-image-text image}\label{fig:audio-image-text}%
  \end{figure}
  
 \subsection{Vector space models of language words(VSMs)}
@@ -45,11 +45,11 @@ This inversion might seem like an arbitrary choice, but statistically it has the
      \center%
      \includegraphics[width=0.8\textwidth]{images/amira/cbow+skip.PNG}%
       % you need to add the caption for the list of figures
-     \caption[cbow and skip Models]{New model architectures. The CBOW architecture predicts the current word based on the context, and the Skip-gram predicts surrounding words given the current word.}\label{fig:cbow}%
+     \caption[CBOW and Skip-gram models architecture]{New model architectures. The CBOW architecture predicts the current word based on the context, and the Skip-gram predicts surrounding words given the current word.}\label{fig:cbow}%
  \end{figure}
  
 \subsubsection{Scaling up with Noise-Contrastive Training}
-     Neural probabilistic language models are traditionally trained using the \textbf{maximum likelihood} (ML) principle to maximize the probability of the next word ${w_t}$(for "target") given the previous words ${h}$  (for "history") in terms of a softmax function\cite{web003}\@.
+     Neural probabilistic language models are traditionally trained using the \textbf{maximum likelihood} (ML) principle to maximize the probability of the next word ${w_t}$(for "target") given the previous words ${h}$  (for "history") in terms of a softmax function\cite{web001}\@.
 
  \begin{equation}
        \large
@@ -68,9 +68,9 @@ where \text score({$w_t$}, $h$) computes the compatibility of word ${w_t}$ with 
  This yields a properly normalized probabilistic model for language modeling. However this is very expensive, because we need to compute and normalize each probability using the score for all other $V$  words $w'$ in the current context $h$ , at every training step.
 \begin{figure}[H]%
     \center%
-    \includegraphics[width=0.8\textwidth]{images/amira/softmax-nplm.png}%
+    \includegraphics[width=0.6\textwidth]{images/amira/softmax-nplm.png}%
     % you need to add the caption for the list of figures
-    \caption[softmax]{softmax-nplm}\label{fig:softmax}%
+    \caption[Word2vec architecture]{softmax-nplm}\label{fig:softmax}%
   \end{figure}
   
 
@@ -92,9 +92,9 @@ We will actually make use of the very similar Noise-Contrastive Estimation (NCE)
 
 \begin{figure}[H]%
     \center%
-    \includegraphics[width=0.8\textwidth]{images/amira/nce-nplm.png}%
+    \includegraphics[width=0.6\textwidth]{images/amira/nce-nplm.png}%
     % you need to add the caption for the list of figures
-    \caption[nce]{nce-nplm}\label{fig:nce-nplm}%
+    \caption[Negative Sampling Graph]{nce-nplm}\label{fig:nce-nplm}%
 \end{figure}
 
 The main difference between the Negative sampling and NCE is that NCE needs both
@@ -107,7 +107,7 @@ samples and the numerical probabilities of the noise distribution, while Negativ
       \center%
         \includegraphics[width=1\textwidth]{images/amira/linear-relationships.png}%
         % you need to add the caption for the list of figures
-        \caption[linear]{linear relationships}\label{fig:nce-nplm}%
+        \caption[Analogies between words]{linear relationships}\label{fig:nce-nplm}%
   \end{figure}
 
 

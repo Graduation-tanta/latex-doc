@@ -11,52 +11,54 @@
 % THE HEADER
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 {%
-  \fontsize{9pt}{9pt}\selectfont%
-  \begin{tabularx}{\textwidth}{ @{} p{0.4\textwidth} @{} m{0.2\textwidth} @{} p{0.4\textwidth} @{} }
+  \fontsize{12pt}{14pt}\selectfont%
+  \begin{tabularx}{\textwidth}{
+  @{} p{0.3\textwidth}
+  @{} p{0.4\textwidth} 
+  @{} p{0.3\textwidth} @{} }
     %
     %
     %
-    % Line 1
-    \centering%
-    Republic of Egypt\\%
-    Ministry of Higher Education, Scientific Research %
-    and Information and Communication Technologies\\%
-    &%
+    
     % Column 2
     \centering%
     \multirow{2}{\linewidth}{%
       \centering%
       %\includegraphics[width=2.5cm, height=2.5cm]{logo-enis.pdf}%
-      \includegraphics[width=2.5cm, height=2.5cm]{example/garbage.png}%
+      \includegraphics[width=3cm, height=3.3cm]{images/cover/eng.jpg}%
     }%
     &%
+    
+    % Line 1
+    \centering%
+    Republic of Egypt\\%
+    Ministry of Higher Education\\%
+    &%
+    
     % Column 3
     \centering%
-    \studyDepartment%
-    % Engineering Education Computer Engineering and Applied Mathematics Discipline%
-    % Cycle de Formation d'Ingénieurs dans la Discipline Génie \studyDepartment%
+    \multirow{2}{\linewidth}{%
+      \centering%
+      %\includegraphics[width=2.5cm, height=2.5cm]{logo-enis.pdf}%
+      \includegraphics[width=3.5cm, height=3cm]{images/cover/tan.png}%
+    }%
+    
     \tabularnewline%
     %
     %
     %
     % Line 2
-    \centering%
+    % Column 2 is empty (contains the logo)
+    &%
+     \centering%
     %\rule{2cm}{0.75pt}\\
     Tanta University\\
     \ENIS{}
     &%
-    % Column 2 is empty (contains the ENIS logo)
-    &%
-    % Column 3
-    \centering%
-    \textbf{%
-    ST-EN07/00\\%
-    \reportTitle{}\\%
-    Serial N°: 2015 / \codePFE%
-    }
+    
     \tabularnewline%
-    \arrayrulecolor{reportType}%
-    \specialrule{0.75pt}{2pt}{0pt}%
+    
+    \specialrule{0.75pt}{11pt}{0pt}%
     \specialrule{2.00pt}{1pt}{0pt}%
   \end{tabularx}
 }
@@ -68,51 +70,46 @@
 
 \vspace{30pt} {%
   \renewcommand*{\familydefault}{\defaultFont}
-  \fontsize{46pt}{46pt}\selectfont%
+  \fontsize{40pt}{48pt}\selectfont%
   % MEMOIRE\\%
-  \reportTitle{}\\\textsc{Report}\\%
+  \reportTitle{}\\
+  \vspace{10pt}%
+  \fontsize{26pt}{31pt}\selectfont%
+  (Reas-Agent)
+  %\textsc{Report}\\%
 }
 
-\vspace{30pt}%
-\textbf{\textit{presented at}}\\
+\fontsize{16pt}{19pt}\selectfont%
 
-\vspace{10pt}
-\ENIS{}\\
+\vspace{30pt}
+
+Faculty Of Engineering \\
 (\studyDepartment)\\
 
 \vspace{30pt}
-\textbf{\textit{in order to obtain the}}\\
+\textbf{\textit{Under The Supervision Of:}}\\
 
-\vspace{10pt}
-National Engineering Diploma in Computer Science\\
-%du Diplôme National d'Ingénieur en Génie \studyDepartment\\
+\vspace{5pt}
+Prof. Mohammed Ali\\
+
 
 \vspace{30pt}
-\textbf{\textit{by}}\\
-\vspace{10pt} {%
-  \fontsize{18pt}{18pt}\selectfont%
-  \textbf{\reportAuthor}\\
-}%
+\textbf{\textit{Group Members:}}\\
 
-\vspace{10pt} {%
-  \renewcommand*{\familydefault}{\defaultFont}
-  \fontsize{27pt}{27pt}\selectfont%
-  \HRule%
-  \vspace{10pt}
-  \reportSubject{}\\%
-  \vspace{10pt}
-  \HRule%
-}
 
-%\vspace{10pt}
-%Defended on~\dateSoutenance~in front of the committee composed of\\
-%Soutenu le \dateSoutenance, devant la commission d'examen:\\
-%\vspace{20pt}
-%\begin{tabular}{p{0.3\linewidth} p{0.15\linewidth}}
-%  \juryPresident{} & \juryPresidentDesc{}\\
-%  \juryMemberOne{} & \juryMemberOneDesc{}\\
-%  \juryMemberTwo{} & \juryMemberTwoDesc{}\\
-%\end{tabular}
+\vspace{5pt} 
+
+\begin{enumerate}  [leftmargin=5.8cm]
+    \item Amir Ahmed Dawood
+    \item Amira Yousif EL-Baradei
+    \item Eman Abd El Azim Khalifa
+    \item Mohammed Alaa El Komy
+    \item Member 1
+    \item Member 1
+    \item Member 1
+\end{enumerate}
+
+
 
 \vfill
 

@@ -142,16 +142,16 @@
     \addcontentsline{toc}{chapter}{\listtablename}
     \cleardoublepage
 
-    { \setstretch{1.25}  % list of tables spacing removal
-     \lstlistoflistings
-    }
+    %{ \setstretch{1.25}  % list of tables spacing removal
+    % \lstlistoflistings
+    %}
    
     \cleardoublepage
     %\printglossary[type=\acronymtype, title=Abbreviations]
    
     % Acronyms                  
-    \markboth{\MakeUppercase{Acronyms}}{}%
-    \printacronyms[heading=chapter*, name=Acronyms]
+    %\markboth{\MakeUppercase{Acronyms}}{}%
+    %\printacronyms[heading=chapter*, name=Acronyms]
     
      
     \sloppy
@@ -164,15 +164,12 @@
     % Main matter
     \include{003-general-intro}
     \cleardoublepage%
-
-    \include{004-chapter0-example}
-    \cleardoublepage%
         
-    \include{004-chapter1-Intro}
-    \cleardoublepage%
+     \include{004-chapter1-Intro}
+     \cleardoublepage%
     
-    \include{004-chapter2-AIDL}
-    \cleardoublepage%
+     \include{004-chapter2-AIDL}
+     \cleardoublepage%
 
      \include{004-chapter3-NLP}
      \cleardoublepage%
@@ -180,13 +177,13 @@
      \include{004-chapter4-MRS}
      \cleardoublepage%
      
-      \include{004-chapter5-Tech}
+     \include{004-chapter5-Tech}
      \cleardoublepage%
      
-      \include{004-chapter6-Imp}
+     \include{004-chapter6-Imp}
      \cleardoublepage%
      
-      \include{004-chapter7-conc}
+     \include{004-chapter7-conc}
      \cleardoublepage%
      
     % Back matter
@@ -194,14 +191,14 @@
     \cleardoublepage%
 
     %\include{006-appendix}
-    %\cleardoublepage%
+    \cleardoublepage%
 
     \include{007-references}
     \cleardoublepage%
 
-    \includepdf[pages={-}]{008-abstract.pdf}
+    %\includepdf[pages={-}]{008-abstract.pdf}
     %\include{008-abstract}
-    \cleardoublepage%
+    %\cleardoublepage%
 
     \addtocontents{toc}{\protect\setcounter{tocdepth}{3}}
 

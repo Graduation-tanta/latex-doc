@@ -1,0 +1,59 @@
+\section{DataSets}
+\label{chap:Datasets}
+
+  %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  % SUBSECTION               %
+  %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  Our work relies on three types of data:
+  \begin{enumerate}
+      \item \textbf{Wikipedia} that serves as our knowledge source for finding answers.
+      \item The \textbf{SQuAD} dataset which is our main resource to train Document Reader.
+      \item Three more QA datasets \textbf{(CuratedTREC, WebQuestions and WikiMovies)}
+  \end{enumerate}
+  in addition to SQuAD, are used to test the open-domain QA abilities of our full system, and to evaluate the ability of our model to learn from multitask learning and distant supervision \cite{P17-1171}.
+  \subsection{Wikipedia (Knowledge Source)}
+  We use the 2016-12-21 dump\cite{web032}\@ of English Wikipedia for all of our full-scale experiments as the knowledge source used to answer questions. For each page, only the plain text is extracted and all structured data sections such as lists and figures are stripped\cite{web033}\@.
+  \subsection{SQuAD}\label{SQuAD}
+  Stanford Question Answering Dataset is a reading comprehension dataset, consisting of questions posed by crowdworkers on a set of Wikipedia articles, where the answer to every question is a segment of text, or span, from the corresponding reading passage, or the question might be unanswerable\cite{web034}\@.\\
+  we use SQuAD for training and evaluating our Document Reader for the standard machine comprehension task given the relevant paragraph.\\
+  For the task of evaluating open-domain question answering over Wikipedia, we use the SQuAD development set QA pairs only, and we ask systems to uncover the correct answer spans without having access to the associated paragraphs. That is, a model is required to answer a question given the whole of Wikipedia as a resource; it is not given the relevant paragraph as in the standard SQuAD setting.
+  \subsection{Open-domain QA Evaluation Resources}
+  SQuAD is one of the largest general purpose QA datasets currently available. SQuAD questions have been collected via a process involving showing a paragraph to each human annotator and asking them to write a question. As a result, their distribution is quite specific. We hence propose to train and evaluate our system on other datasets developed for open-domain QA that have been constructed in different ways (not necessarily in the context of answering from Wikipedia).
+  \begin{itemize}
+      \item \textbf{CuratedTREC} \label{CuratedTREC}\\
+        This dataset has had a question answering track since 1999; in each track the task was defined such that the systems were to retrieve small snippets of text that contained an answer for open-domain, closed-class questions (i.e., fact-based, short-answer questions that can be drawn from any domain). 
+      \item \textbf{WebQuestions} \label{WebQuestions}\\ 
+      This dataset contains 3,778 training examples and 2,032 test examples. \\ 
+      each example contains three fields:
+      \begin{itemize}
+          \item utterance: natural language utterance.
+          \item targetValue: The answer provided by AMT workers, given as a list of descriptions.
+          \item url: Frebase page where AMT workers found the answer.\cite{web035}\@
+      \end{itemize}
+      It was created by crawling questions through the Google Suggest API, and then obtaining answers using Amazon Mechanical Turk.\\ We convert each answer to text by using entity names so that the dataset does not reference Freebase IDs and is purely made of plain text question-answer pairs.
+      \item \textbf{WikiMovies} \label{wikiMovies}\\
+      This includes only the QA part of the Movie Dialog dataset, but using three different settings of knowledge: using a traditional knowledge base (KB), using Wikipedia as the source of knowledge, or using IE (information extraction) over Wikipedia. This allows to test the ability of models to directly read documents to answer questions, and to compare this to traditional KBs in the same setting \cite{web034}\@.
+  \end{itemize}
+  
+  \section{Distance Supervision}
+\subsection{Distantly Supervised Data}
+All the QA datasets presented above contain training portions, but CuratedTREC \ref{CuratedTREC}, WebQuestions \ref{WebQuestions} and WikiMovies \ref{wikiMovies} only contain question-answer pairs, and not an associated document or paragraph as in SQuAD, and hence cannot be used for training Document Reader directly.
+we use a procedure to automatically associate paragraphs to such training examples, and then add these examples to our training set. We use the following process for each question answer pair to build our training set. First, we run Document Retriever on the question to retrieve the top 5 Wikipedia articles. All paragraphs from those articles without an exact match of the known answer are directly discarded. All paragraphs shorter than 25 or longer than 1500 characters are also filtered out. If any named entities are detected in the question, we remove any paragraph that does not contain them at all. For every remaining paragraph in each retrieved page, we score all positions that match an answer using unigram and bigram overlap between the question and a 20 token window, keeping up to the top 5 paragraphs with the highest overlaps. If there is no paragraph with non-zero overlap, the example is discarded; otherwise we add each found pair to our DS training dataset.
+we can also generate additional DS data for SQuAD by trying to find mentions of the answers not just in the paragraph provided, but also from other pages or the same page that the given paragraph was in. We observe that around half of the DS examples come from pages outside of the articles used in SQuAD\cite{P17-1171}.
+\section{Additional Featurization}
+There are the basic Natural Language Processing capabilities (or annotators) that are usually necessary to extract language units from textual data for sake of search and other applications:
+\begin{itemize}
+    \item \textbf{Lemmatizer}\\ \label{lemma}to convert a given word into its canonical form (lemma). Usually you need to know the word's POS-tag. For example, word "heating" as gerund must be converted to "heat", but as noun it must be left unchanged.
+    \item \textbf{Part-of-speech Tagger}\\ \label{POS} to guess part of speech of each word in the context of sentence; usually each word is assigned a so-called POS-tag from a tagset developed in advance to serve your final task (for example, parsing).
+    \item \textbf{Named Entity Recognition}\\ \label{NER}to extract so-called named entities from the text. Named entities are the chunks of words from text, which refer to an entity of certain type. The types may include: geographic locations (countries, cities, rivers, ...), person names, organization names etc. Before going into NER task you must understand what do you want to get and, possible, predefine a taxonomy of named entity types to resolve \cite{web037}.
+\end{itemize}
+\section{preprocessing Data}
+We want to preprocess data before training our models on them.So, our script takes a SQuAD-formatted dataset in which contain question answers pairs and outputs a preprocessed, training-ready file. Specifically, it handles tokenization \ref{tokenization}, mapping character offsets to token offsets, and any additional featurization such as lemmatization, part-of-speech tagging, and named entity recognition.
+So, we execute some functions which used to preprocess SQuAD dataset:
+\begin{enumerate}
+     
+    \item Load file of data and store fields separately by store every field in separate column such as ids, question, answers, contexts.
+    \item Pass text to separate it in tokens (words) or meaning phrases.
+    \item Match token offsets with the char begin/end offsets of the answer.
+    \item Iterate processing dataset multithreaded by using Lemmatizer \ref{lemma} which  convert a given word into its canonical form and other additional featurization and we use \textbf{Stanford CoreNLP} which provides a set of human language technology tools. It can give the base forms of words, their parts of speech \ref{POS}, whether they are names of companies, people, etc., normalize dates, times, and numeric quantities, mark up the structure of sentences in terms of phrases and syntactic dependencies, indicate which noun phrases refer to the same entities, indicate sentiment, extract particular or open-class relations between entity mentions, get the quotes people said, etc \cite{manning-EtAl:2014:P14-5}.
+\end{enumerate}   
